@@ -2,23 +2,25 @@
 
 SERIAL_PORT=/dev/ttyACM0
 
-REFLASH_EEPROM=true
+#REFLASH_EEPROM=true
+REFLASH_EEPROM=false
 
-make "handwired/dactyl_manuform/4x6:default"
+make "handwired/dactyl_manuform/4x6:default" || exit 1
 
 # Should be able to omit after first flash?
-read  -n 1 -p "Connect left hand and reset" x
-if [[ $REFLASH_EEPROM ]] ; then
-    sudo avrdude -p m32u4 -P $SERIAL_PORT -c avr109 -U eeprom:w:quantum/split_common/eeprom-lefthand.eep
+#read -r -n 1 -p "Connect left hand and reset" x
+read -r -p "Connect left hand, reset, then hit enter" x
+if $REFLASH_EEPROM ; then
+    sudo avrdude -p m32u4 -P $SERIAL_PORT -c avr109 -U eeprom:w:quantum/split_common/eeprom-lefthand.eep || exit 2
     sleep 1
-    read  -n 1 -p "Reset again" x
+    read -r -p "Reset again" x
 fi
-sudo avrdude -p m32u4 -P $SERIAL_PORT -c avr109 -U flash:w:handwired_dactyl_manuform_4x6_default.hex
+sudo avrdude -p m32u4 -P $SERIAL_PORT -c avr109 -U flash:w:handwired_dactyl_manuform_4x6_default.hex || exit 3
 
-read  -n 1 -p "Connect right hand and reset" x
-if [[ $REFLASH_EEPROM ]] ; then
-    sudo avrdude -p m32u4 -P $SERIAL_PORT /dev/ttyACM0 -c avr109 -U eeprom:w:quantum/split_common/eeprom-righthand.eep
+read -r -p "Connect right hand, reset, then hit enter" x
+if $REFLASH_EEPROM ; then
+    sudo avrdude -p m32u4 -P $SERIAL_PORT /dev/ttyACM0 -c avr109 -U eeprom:w:quantum/split_common/eeprom-righthand.eep || exit 4
     sleep 1
-    read  -n 1 -p "Reset again" x
+    read -r -p "Reset again" x
 fi
-sudo avrdude -p m32u4 -P $SERIAL_PORT -c avr109 -U flash:w:handwired_dactyl_manuform_4x6_default.hex
+sudo avrdude -p m32u4 -P $SERIAL_PORT -c avr109 -U flash:w:handwired_dactyl_manuform_4x6_default.hex || exit 5
