@@ -103,6 +103,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
     }
     if (state.esc_down && state.r_down) {
+        register_code(KC_ENTER); // Send enter before resetting as our build script expects enter
         reset_keyboard();
     }
     return true;
