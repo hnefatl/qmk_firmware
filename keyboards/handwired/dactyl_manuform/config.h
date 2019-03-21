@@ -49,6 +49,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Enables This makes it easier for fast typists to use dual-function keys */
 #define PERMISSIVE_HOLD
 
+// Allow dual function keys to send the original keycode if no key was pressed within the hold time
+#define RETRO_TAPPING
+
 /* ws2812 RGB LED */
 #define RGB_DI_PIN D3
 
