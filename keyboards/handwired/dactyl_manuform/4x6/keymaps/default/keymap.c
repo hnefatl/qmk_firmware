@@ -35,6 +35,7 @@ enum {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
+// Visual layouts at http://www.keyboard-layout-editor.com
 [LAYER_DVORAK] = LAYOUT(
     KC_RST, KC_QUOT,KC_COMM,KC_DOT, KC_P,   KC_Y   ,            KC_F,    KC_G,  KC_C,   KC_R,   KC_L,   KC_UNDS,   \
     KC_TAB, KC_A,   KC_O,   KC_E,   KC_U,   KC_I,               KC_D,    KC_H,  KC_T,   KC_N,   KC_S,   KC_COLN,   \
