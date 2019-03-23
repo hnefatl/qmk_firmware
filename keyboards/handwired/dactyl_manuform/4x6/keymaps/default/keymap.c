@@ -91,3 +91,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 }
+
+void matrix_init_user(void) {
+    set_unicode_input_mode(UC_LNX);
+}
