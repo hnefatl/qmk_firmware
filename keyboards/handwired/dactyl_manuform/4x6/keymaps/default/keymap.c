@@ -20,6 +20,8 @@ enum {
 
 // Left shift when held, caps lock when tapped
 #define KC_SCL LSFT_T(KC_CAPSLOCK)
+// Left shift when held, escape when tapped
+#define KC_SESC LSFT_T(KC_ESCAPE)
 
 // Escape when tapped, switch to function layer when held
 #define KC_RST LT(LAYER_FUNCTION, KC_ESCAPE)
@@ -41,9 +43,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB, KC_A,   KC_O,   KC_E,   KC_U,   KC_I,               KC_D,    KC_H,  KC_T,   KC_N,   KC_S,   KC_COLN,   \
     _______,KC_SCLN,KC_Q,   KC_J,   KC_K,   KC_X,               KC_B,    KC_M,  KC_W,   KC_V,   KC_Z,   KC_SLSH,   \
                     _______,_______,                                            _______,_______,                   \
-                                    KC_SCL, KC_SPC,             KC_ENT, KC_BSPC,                                   \
+                                    KC_SESC,KC_SPC,             KC_ENT, KC_BSPC,                                   \
                                     KC_LALT,SYMBLS,             SYMBLS, KC_LCTL,                                   \
-                                    _______,KC_LWIN,            _______,KC_ESC                                     \
+                                    KC_LGUI,KC_RGUI,            _______,KC_ESC                                     \
 ),
 
 [LAYER_QWERTY] = LAYOUT(
@@ -51,9 +53,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,  KC_A,  KC_S,   KC_D,   KC_F,   KC_G,               KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN,KC_COLN,   \
     _______, KC_Z,  KC_X,   KC_C,   KC_V,   KC_B,               KC_N,   KC_M,   KC_COMM,KC_DOT, KC_BSLS,KC_SLSH,   \
                     KC_LBRC,KC_RBRC,                                            KC_PLUS,KC_EQL,                    \
-                                    KC_SCL, KC_SPC,             KC_ENT, KC_BSPC,                                   \
+                                    KC_SESC,KC_SPC,             KC_ENT, KC_BSPC,                                   \
                                     KC_LALT,SYMBLS,             SYMBLS, KC_LCTL,                                   \
-                                    _______,KC_LWIN,            _______,KC_ESC                                     \
+                                    KC_LGUI,KC_RGUI,            _______,KC_ESC                                     \
 ),
 
 [LAYER_SYMBOLS] = LAYOUT(
