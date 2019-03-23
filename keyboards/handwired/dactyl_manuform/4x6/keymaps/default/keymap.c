@@ -42,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                     _______,_______,                                            _______,_______,                   \
                                     KC_SCL, KC_SPC,             KC_ENT, KC_BSPC,                                   \
                                     KC_LALT,SYMBLS,             SYMBLS, KC_LCTL,                                   \
-                                    _______,KC_LWIN,            _______, _______                                   \
+                                    _______,KC_LWIN,            _______,KC_ESC                                     \
 ),
 
 [LAYER_QWERTY] = LAYOUT(
@@ -50,16 +50,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,  KC_A,  KC_S,   KC_D,   KC_F,   KC_G,               KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN,KC_COLN,   \
     _______, KC_Z,  KC_X,   KC_C,   KC_V,   KC_B,               KC_N,   KC_M,   KC_COMM,KC_DOT, KC_BSLS,KC_SLSH,   \
                     KC_LBRC,KC_RBRC,                                            KC_PLUS,KC_EQL,                    \
-                                    KC_SCL, KC_SPC,             KC_ENT,  KC_BSPC,                                  \
-                                    KC_LALT,SYMBLS,             SYMBLS,  KC_LCTL,                                  \
-                                    _______,KC_LWIN,            _______,  _______                                  \
+                                    KC_SCL, KC_SPC,             KC_ENT, KC_BSPC,                                   \
+                                    KC_LALT,SYMBLS,             SYMBLS, KC_LCTL,                                   \
+                                    _______,KC_LWIN,            _______,KC_ESC                                     \
 ),
 
 [LAYER_SYMBOLS] = LAYOUT(
     KC_RST, KC_EXLM,KC_PND, KC_DLR, KC_PERC,KC_AMPR,            KC_PEQL,KC_PPLS,KC_PMNS,KC_PAST,KC_PSLS,KC_CIRC,   \
     XXXXXXX,KC_1,   KC_2,   KC_3,   KC_4,   KC_5,               KC_6,   KC_7,   KC_8,   KC_9,   KC_0,   XXXXXXX,   \
-    XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,            KC_LBRC,KC_RBRC,KC_LPRN,KC_RPRN,XXXXXXX,XXXXXXX,   \
-                    XXXXXXX,XXXXXXX,                                            KC_LCBR,KC_RCBR,                   \
+    XXXXXXX,KC_QUES,KC_LT,  KC_GT,  KC_AT,  KC_HASH,            KC_LBRC,KC_RBRC,KC_LPRN,KC_RPRN,KC_GRV, XXXXXXX,   \
+                    XXXXXXX,KC_TILD,                                            KC_LCBR,KC_RCBR,                   \
                                     _______,_______,            _______,_______,                                   \
                                     _______,_______,            _______,_______,                                   \
                                     _______,_______,            _______,_______                                    \
@@ -70,8 +70,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,            XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
     XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,            XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
                     XXXXXXX,XXXXXXX,                                            XXXXXXX,XXXXXXX,                   \
-                                    XXXXXXX,XXXXXXX,            XXXXXXX,XXXXXXX,                                   \
-                                    XXXXXXX,XXXXXXX,            XXXXXXX,XXXXXXX,                                   \
+                                    KC_VOLD,KC_VOLU,            KC_BRIU,KC_BRID,                                   \
+                                    KC_MUTE,KC_MPLY,            XXXXXXX,XXXXXXX,                                   \
                                     XXXXXXX,QWERTY,             DVORAK, XXXXXXX                                    \
 )
 };
