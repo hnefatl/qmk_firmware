@@ -4,8 +4,8 @@ extern keymap_config_t keymap_config;
 
 // Layers
 enum {
-    LAYER_QWERTY = 0,
-    LAYER_DVORAK,
+    LAYER_DVORAK = 0,
+    LAYER_QWERTY,
     LAYER_SYMBOLS,
     LAYER_FUNCTION,
 };
@@ -24,6 +24,9 @@ enum {
 // Escape when tapped, switch to function layer when held
 #define KC_RST LT(LAYER_FUNCTION, KC_ESCAPE)
 
+// "£"
+#define KC_PND UC(0x00A3)
+
 // Layer switches
 #define QWERTY DF(LAYER_QWERTY)
 #define DVORAK DF(LAYER_DVORAK)
@@ -32,44 +35,44 @@ enum {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-[LAYER_QWERTY] = LAYOUT
-    KC_RST,  KC_Q,  KC_W,   KC_E,   KC_R,   KC_T,               KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_MINS,   \
-    KC_TAB,  KC_A,  KC_S,   KC_D,   KC_F,   KC_G,               KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN,KC_QUOT,   \
-    _______, KC_Z,  KC_X,   KC_C,   KC_V,   KC_B,               KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,KC_BSLASH, \
-                    KC_LBRC,KC_RBRC,                                            KC_PLUS,KC_EQL,                    \
-                                    KC_SCL, KC_SPC,             KC_ENT,  KC_BSPC,                                  \
-                                    KC_LALT,SYMBLS,             SYMBLS,  KC_LCTL,                                  \
-                                    _______,KC_LGUI,            _______,  _______                                  \
-),
-
 [LAYER_DVORAK] = LAYOUT(
-    KC_RST, KC_QUOT,KC_COMM,KC_DOT, KC_P,   KC_Y   ,            KC_F,    KC_G,  KC_C,   KC_R,   KC_L,   _______,   \
-    KC_TAB, KC_A,   KC_O,   KC_E,   KC_U,   KC_I,               KC_D,    KC_H,  KC_T,   KC_N,   KC_S,   _______,   \
-    _______,KC_SCLN,KC_Q,   KC_J,   KC_K,   KC_X,               KC_B,    KC_M,  KC_W,   KC_V,   KC_Z,   _______,   \
+    KC_RST, KC_QUOT,KC_COMM,KC_DOT, KC_P,   KC_Y   ,            KC_F,    KC_G,  KC_C,   KC_R,   KC_L,   KC_UNDS,   \
+    KC_TAB, KC_A,   KC_O,   KC_E,   KC_U,   KC_I,               KC_D,    KC_H,  KC_T,   KC_N,   KC_S,   KC_COLN,   \
+    _______,KC_SCLN,KC_Q,   KC_J,   KC_K,   KC_X,               KC_B,    KC_M,  KC_W,   KC_V,   KC_Z,   KC_SLSH,   \
                     _______,_______,                                            _______,_______,                   \
                                     KC_SCL, KC_SPC,             KC_ENT, KC_BSPC,                                   \
                                     KC_LALT,SYMBLS,             SYMBLS, KC_LCTL,                                   \
-                                    _______,KC_LGUI,            _______, _______                                   \
+                                    _______,KC_LWIN,            _______, _______                                   \
+),
 
+[LAYER_QWERTY] = LAYOUT(
+    KC_RST,  KC_Q,  KC_W,   KC_E,   KC_R,   KC_T,               KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_UNDS,   \
+    KC_TAB,  KC_A,  KC_S,   KC_D,   KC_F,   KC_G,               KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN,KC_COLN,   \
+    _______, KC_Z,  KC_X,   KC_C,   KC_V,   KC_B,               KC_N,   KC_M,   KC_COMM,KC_DOT, KC_BSLS,KC_SLSH,   \
+                    KC_LBRC,KC_RBRC,                                            KC_PLUS,KC_EQL,                    \
+                                    KC_SCL, KC_SPC,             KC_ENT,  KC_BSPC,                                  \
+                                    KC_LALT,SYMBLS,             SYMBLS,  KC_LCTL,                                  \
+                                    _______,KC_LWIN,            _______,  _______                                  \
+),
 
 [LAYER_SYMBOLS] = LAYOUT(
-    KC_RST, _______,_______,_______,_______,_______,            KC_PEQL,KC_PPLS,KC_PMNS,KC_PAST,KC_PSLS,KC_CIRC,   \
-    _______,KC_1,   KC_2,   KC_3,   KC_4,   KC_5,               KC_6,   KC_7,   KC_8,   KC_9,   KC_0,   _______,   \
-    _______,_______,_______,_______,_______,_______,            KC_LBRC,KC_RBRC,KC_LPRN,KC_RPRN,_______,_______,   \
-                    _______,_______,                                            KC_LCBR,KC_RCBR,                   \
+    KC_RST, KC_EXLM,KC_PND, KC_DLR, KC_PERC,KC_AMPR,            KC_PEQL,KC_PPLS,KC_PMNS,KC_PAST,KC_PSLS,KC_CIRC,   \
+    XXXXXXX,KC_1,   KC_2,   KC_3,   KC_4,   KC_5,               KC_6,   KC_7,   KC_8,   KC_9,   KC_0,   XXXXXXX,   \
+    XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,            KC_LBRC,KC_RBRC,KC_LPRN,KC_RPRN,XXXXXXX,XXXXXXX,   \
+                    XXXXXXX,XXXXXXX,                                            KC_LCBR,KC_RCBR,                   \
                                     _______,_______,            _______,_______,                                   \
                                     _______,_______,            _______,_______,                                   \
                                     _______,_______,            _______,_______                                    \
 ),
 
 [LAYER_FUNCTION] = LAYOUT(
-    _______,_______,_______,_______,_______,_______,            _______,_______,_______,_______,_______,KC_CRST,   \
-    _______,_______,_______,_______,_______,_______,            _______,_______,_______,_______,_______,_______,   \
-    _______,_______,_______,_______,_______,_______,            _______,_______,_______,_______,_______,_______,   \
-                    _______,_______,                                            _______,_______,                   \
-                                    _______,_______,            _______,_______,                                   \
-                                    _______,_______,            _______,_______,                                   \
-                                    _______, QWERTY,             DVORAK,_______                                    \
+    _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,            XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,KC_CRST,   \
+    XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,            XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
+    XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,            XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
+                    XXXXXXX,XXXXXXX,                                            XXXXXXX,XXXXXXX,                   \
+                                    XXXXXXX,XXXXXXX,            XXXXXXX,XXXXXXX,                                   \
+                                    XXXXXXX,XXXXXXX,            XXXXXXX,XXXXXXX,                                   \
+                                    XXXXXXX,QWERTY,             DVORAK, XXXXXXX                                    \
 )
 };
 

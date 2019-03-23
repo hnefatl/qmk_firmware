@@ -7,7 +7,7 @@ fi
 
 SERIAL_PORT=/dev/ttyACM0
 
-REFLASH_EEPROM=false
+REFLASH_EEPROM=true
 
 read -r -p "Connect left hand, reset, then hit enter" x
 sleep 1
