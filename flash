@@ -1,0 +1,30 @@
+#!/bin/bash
+
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 
+   exit -1
+fi
+
+SERIAL_PORT=/dev/ttyACM0
+
+REFLASH_EEPROM=false
+
+read -r -p "Connect left hand, reset, then hit enter" x
+sleep 1
+if $REFLASH_EEPROM ; then
+    avrdude -p m32u4 -P $SERIAL_PORT -c avr109 -U eeprom:w:quantum/split_common/eeprom-lefthand.eep || exit 2
+    sleep 1
+    read -r -p "Reset again" x
+    sleep 1
+fi
+avrdude -p m32u4 -P $SERIAL_PORT -c avr109 -U flash:w:handwired_dactyl_manuform_4x6_default.hex || exit 3
+
+read -r -p "Connect right hand, reset, then hit enter" x
+sleep 1
+if $REFLASH_EEPROM ; then
+    avrdude -p m32u4 -P $SERIAL_PORT /dev/ttyACM0 -c avr109 -U eeprom:w:quantum/split_common/eeprom-righthand.eep || exit 4
+    sleep 1
+    read -r -p "Reset again" x
+    sleep 1
+fi
+avrdude -p m32u4 -P $SERIAL_PORT -c avr109 -U flash:w:handwired_dactyl_manuform_4x6_default.hex || exit 5
