@@ -8,12 +8,13 @@ fi
 OPTIND=1 # Reset getopts
 
 SERIAL_PORT=/dev/ttyACM0
+LAYOUT=default
 REFLASH_EEPROM=false
 hands=()
 
 # Parse arguments
-args=$(getopt -o lr --long left,right,reflash -n flash -- "$@")
-if [[ $? != 0 ]] ; then
+args=$(getopt -o lr --long left,right,reflash,layout: -n flash -- "$@")
+if [[ $? -ne 0 ]] ; then
     exit -1
 fi
 eval set -- "$args"
@@ -24,6 +25,7 @@ while true ; do
     l|--left)  hands+=(left)  ; shift ;;
     r|--right) hands+=(right) ; shift ;;
     --reflash) REFLASH_EEPROM=true ; shift ;;
+    --layout) LAYOUT="$2" ; shift 2 ;;
     --) shift; break ;;
     *) break ;;
     esac
@@ -38,10 +40,10 @@ for hand in ${hands[@]} ; do
     read -r -p "Connect $hand hand, reset, then hit enter" x
     if [[ "$REFLASH_EEPROM" == "true" ]] ; then
         sleep 2
-        avrdude -p m32u4 -P $SERIAL_PORT -c avr109 -U eeprom:w:quantum/split_common/eeprom-${hand}hand.eep || exit 2
+        avrdude -p m32u4 -P $SERIAL_PORT -c avr109 -U "eeprom:w:quantum/split_common/eeprom-${hand}hand.eep" || exit 2
         sleep 1
         read -r -p "Reset again" x
     fi
     sleep 2
-    avrdude -p m32u4 -P $SERIAL_PORT -c avr109 -U flash:w:handwired_dactyl_manuform_4x6_default.hex || exit 3
+    avrdude -p m32u4 -P $SERIAL_PORT -c avr109 -U "flash:w:handwired_dactyl_manuform_4x6_${LAYOUT}.hex" || exit 3
 done
