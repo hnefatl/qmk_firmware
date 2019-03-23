@@ -5,26 +5,43 @@ if [[ $EUID -ne 0 ]]; then
    exit -1
 fi
 
+OPTIND=1 # Reset getopts
+
 SERIAL_PORT=/dev/ttyACM0
+REFLASH_EEPROM=false
+hands=()
 
-REFLASH_EEPROM=true
-
-read -r -p "Connect left hand, reset, then hit enter" x
-sleep 2
-if $REFLASH_EEPROM ; then
-    avrdude -p m32u4 -P $SERIAL_PORT -c avr109 -U eeprom:w:quantum/split_common/eeprom-lefthand.eep || exit 2
-    sleep 1
-    read -r -p "Reset again" x
-    sleep 2
+# Parse arguments
+args=$(getopt -o lr --long left,right,reflash -n flash -- "$@")
+if [[ $? != 0 ]] ; then
+    exit -1
 fi
-avrdude -p m32u4 -P $SERIAL_PORT -c avr109 -U flash:w:handwired_dactyl_manuform_4x6_default.hex || exit 3
+eval set -- "$args"
 
-read -r -p "Connect right hand, reset, then hit enter" x
-sleep 2
-if $REFLASH_EEPROM ; then
-    avrdude -p m32u4 -P $SERIAL_PORT /dev/ttyACM0 -c avr109 -U eeprom:w:quantum/split_common/eeprom-righthand.eep || exit 4
-    sleep 1
-    read -r -p "Reset again" x
-    sleep 2
+# Load logic from arguments
+while true ; do
+    case "$1" in
+    l|--left)  hands+=(left)  ; shift ;;
+    r|--right) hands+=(right) ; shift ;;
+    --reflash) REFLASH_EEPROM=true ; shift ;;
+    --) shift; break ;;
+    *) break ;;
+    esac
+done
+
+# If we weren't given any hand arguments, flash both
+if [[ ${#hands[@]} -eq 0 ]] ; then
+    hands=(left right)
 fi
-avrdude -p m32u4 -P $SERIAL_PORT -c avr109 -U flash:w:handwired_dactyl_manuform_4x6_default.hex || exit 5
+
+for hand in ${hands[@]} ; do
+    read -r -p "Connect $hand hand, reset, then hit enter" x
+    if [[ "$REFLASH_EEPROM" == "true" ]] ; then
+        sleep 2
+        avrdude -p m32u4 -P $SERIAL_PORT -c avr109 -U eeprom:w:quantum/split_common/eeprom-${hand}hand.eep || exit 2
+        sleep 1
+        read -r -p "Reset again" x
+    fi
+    sleep 2
+    avrdude -p m32u4 -P $SERIAL_PORT -c avr109 -U flash:w:handwired_dactyl_manuform_4x6_default.hex || exit 3
+done
