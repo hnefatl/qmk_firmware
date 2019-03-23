@@ -13,7 +13,7 @@ REFLASH_EEPROM=false
 hands=()
 
 # Parse arguments
-args=$(getopt -o lr --long left,right,reflash,layout: -n flash -- "$@")
+args=$(getopt -o lr --long left,right,eeprom,layout: -n flash -- "$@")
 if [[ $? -ne 0 ]] ; then
     exit -1
 fi
@@ -24,7 +24,7 @@ while true ; do
     case "$1" in
     l|--left)  hands+=(left)  ; shift ;;
     r|--right) hands+=(right) ; shift ;;
-    --reflash) REFLASH_EEPROM=true ; shift ;;
+    --eeprom) REFLASH_EEPROM=true ; shift ;;
     --layout) LAYOUT="$2" ; shift 2 ;;
     --) shift; break ;;
     *) break ;;
