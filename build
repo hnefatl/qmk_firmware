@@ -1,3 +1,22 @@
 #!/bin/bash
 
-make "handwired/dactyl_manuform/4x6:default" || exit 1
+LAYOUT=default
+
+# Parse arguments
+OPTIND=1
+args=$(getopt -o "" --long layout: -n build -- "$@")
+if [[ $? -ne 0 ]] ; then
+    exit -1
+fi
+eval set -- "$args"
+
+# Load logic from arguments
+while true ; do
+    case "$1" in
+    --layout) LAYOUT="$2" ; shift 2 ;;
+    --) shift; break ;;
+    *) break ;;
+    esac
+done
+
+make "handwired/dactyl_manuform/4x6:$LAYOUT" || exit 1
