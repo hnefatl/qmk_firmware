@@ -1,9 +1,0 @@
-
-
-done : 
-ctrl + arrow jump a word
-Ctrl + backspace = delete full word
-ctrl + shift + arrow select full word
-
-
-
