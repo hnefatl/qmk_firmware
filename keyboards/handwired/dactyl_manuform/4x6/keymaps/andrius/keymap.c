@@ -146,8 +146,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     QWERTY ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,            XXXXXXX,XXXXXXX,XXXXXXX,KC_MS_U,KC_MS_R,XXXXXXX,   \
                     XXXXXXX,XXXXXXX,                                            KC_MS_L,KC_MS_D,                   \
                                     _______,KC_ACL0,            KC_BTN1,KC_BTN2,                                   \
-                                    _______,KC_ACL1,            KC_WH_D,KC_WH_U,                                   \
-                                    _______,KC_ACL2,            XXXXXXX,_______                                    \
+                                    KC_ACL1,KC_ACL2,            KC_WH_D,KC_WH_U,                                   \
+                                    _______,_______,            XXXXXXX,_______                                    \
 ),
 
 [LAYER_ADJUST] = LAYOUT(
