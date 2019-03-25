@@ -28,7 +28,7 @@ enum {
 #define LOWER MO(LAYER_LOWER)
 #define RAISE MO(LAYER_RAISE)
 #define FN MO(LAYER_FN)
-#define MOUSE TT(LAYER_MOUSE)
+#define MOUSE DF(LAYER_MOUSE)
 
 // Left shift when held, caps lock when tapped
 #define KC_SCL LSFT_T(KC_CAPSLOCK)
@@ -133,7 +133,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * +-----------------------------------------+                  +-----------------------------------------+
  * |QWERTY|      |      |      |      |      |                  |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
- * |QWERTY|      |      |      |      |      |                  |      |      |      |      |      |      |
+ * |QWERTY|      |      |      |      |      |                  | LEFT | DOWN | UP   |RIGHT |      |      |
  * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
  * |QWERTY|      |      |      |      |      |                  |      |      |      | UP   |RIGHT |      |
  * +------+------+------+------+-------------+                  +-------------+------+------+------+------+
