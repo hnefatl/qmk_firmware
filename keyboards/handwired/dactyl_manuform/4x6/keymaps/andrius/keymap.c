@@ -10,13 +10,16 @@ enum {
     LAYER_RAISE,
     LAYER_FN,
     LAYER_MOUSE,
+    LAYER_TEST,
 };
 
 // Custom keycodes
 enum {
-    KC_CUSTOM_RESET = SAFE_RANGE
+    KC_CUSTOM_RESET = SAFE_RANGE,
+    KC_ROUND_POINTY,
 };
 #define KC_CRST KC_CUSTOM_RESET
+#define KC_RP KC_ROUND_POINTY
 
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
@@ -29,6 +32,8 @@ enum {
 #define RAISE MO(LAYER_RAISE)
 #define FN MO(LAYER_FN)
 #define MOUSE DF(LAYER_MOUSE)
+
+#define TEST MO(LAYER_TEST)
 
 // Left shift when held, caps lock when tapped
 #define KC_SCL LSFT_T(KC_CAPSLOCK)
@@ -63,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                      KC_BSLS,KC_EQL,                                             MOUSE  ,KC_MINUS,                  \
                                     KC_ENT , KC_SPC ,            KC_BSPC,  KC_DEL ,                                 \
                                     KC_LCTL,  LOWER ,             RAISE ,  KC_LALT,                                 \
-                                    _______, _______,              FN   ,  KC_LGUI                                  \
+                                    _______,  TEST  ,              FN   ,  KC_LGUI                                  \
 ),
 
 /* Base (lower)
@@ -129,6 +134,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     _______,_______,            XXXXXXX,_______                                    \
 ),
 
+/* Base (test)
+ * +-----------------------------------------+                  +-----------------------------------------+
+ * |      |      |      |      |      |      |                  |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |                  |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |                  |      |      |      |      |      |      |
+ * +------+------+------+------+-------------+                  +-------------+------+------+------+------+
+ *               |      |      |                                              |      |      |
+ *               +-------------+                                              +-------------+
+ */
+[LAYER_TEST] = LAYOUT(
+    _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX ,XXXXXXX,           XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
+    _______,S(KC_A),XXXXXXX,XXXXXXX,XXXXXXX ,XXXXXXX,           XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
+    _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX ,XXXXXXX,           XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
+                    XXXXXXX,XXXXXXX,                                            XXXXXXX,XXXXXXX,                   \
+                                    _______,_______,            _______,_______,                                   \
+                                    _______,XXXXXXX,            XXXXXXX,_______,                                   \
+                                    _______,_______,            XXXXXXX,_______                                    \
+),
+
 /* Base (mouse)
  * +-----------------------------------------+                  +-----------------------------------------+
  * |QWERTY| RGB  |      |      |      |      |                  |      |      |      |      |      |      |
@@ -143,7 +169,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [LAYER_MOUSE] = LAYOUT(
     QWERTY ,RGB_TOG,XXXXXXX,XXXXXXX,XXXXXXX ,XXXXXXX,           XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
     QWERTY ,RGB_HUI,RGB_SAI,RGB_VAI,RGB_MOD ,XXXXXXX,           KC_MS_L,KC_MS_D,KC_MS_U,KC_MS_R,XXXXXXX,XXXXXXX,   \
-    QWERTY ,RGB_HUD,RFB_SAD,RGB_VAD,RGB_RMOD,XXXXXXX,           XXXXXXX,XXXXXXX,XXXXXXX,KC_MS_U,KC_MS_R,XXXXXXX,   \
+    QWERTY ,RGB_HUD,RGB_SAD,RGB_VAD,RGB_RMOD,XXXXXXX,           XXXXXXX,XXXXXXX,XXXXXXX,KC_MS_U,KC_MS_R,XXXXXXX,   \
                     XXXXXXX,XXXXXXX,                                            KC_MS_L,KC_MS_D,                   \
                                     _______,_______,            KC_BTN1,KC_BTN2,                                   \
                                     _______,_______,            KC_WH_D,KC_WH_U,                                   \
