@@ -99,8 +99,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *               +-------------+                                              +-------------+
  */
 [LAYER_RAISE] = LAYOUT(
-    _______,   KC_1,   KC_2,   KC_3,   KC_4,   KC_5,               KC_6,   KC_7,   KC_8,   KC_9,    KC_0,XXXXXXX,   \
-    _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,            KC_LEFT,KC_DOWN, KC_UP ,KC_RIGHT,XXXXXXX,XXXXXXX,  \
+    _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,            XXXXXXX,XXXXXXX,KC_HOME,XXXXXXX,XXXXXXX,XXXXXXX,   \
+    _______,KC_END ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,            KC_LEFT,KC_DOWN, KC_UP ,KC_RIGHT,XXXXXXX,XXXXXXX,  \
     _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,            XXXXXXX,KC_LBRC,KC_RBRC, KC_UP ,KC_RIGHT,_______,  \
                     XXXXXXX,XXXXXXX,                                            KC_LEFT,KC_DOWN,                   \
                                     _______,_______,            _______,_______,                                   \
@@ -147,7 +147,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                     XXXXXXX,XXXXXXX,                                            KC_MS_L,KC_MS_D,                   \
                                     _______,_______,            KC_BTN1,KC_BTN2,                                   \
                                     _______,_______,            KC_WH_D,KC_WH_U,                                   \
-                                    _______,_______,            XXXXXXX,_______                                    \
+                                    _______,_______,            _______,_______                                    \
 ),
 
 [LAYER_ADJUST] = LAYOUT(
