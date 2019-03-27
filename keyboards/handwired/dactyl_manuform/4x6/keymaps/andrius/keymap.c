@@ -146,9 +146,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *               +-------------+                                              +-------------+
  */
 [LAYER_TEST] = LAYOUT(
-    _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX ,XXXXXXX,           XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
-    _______,S(KC_A),XXXXXXX,XXXXXXX,XXXXXXX ,XXXXXXX,           XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
-    _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX ,XXXXXXX,           XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
+    _______,RGB_TOG,XXXXXXX,XXXXXXX,XXXXXXX ,XXXXXXX,           S(KC_A),XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
+    _______,RGB_HUI,RGB_SAI,RGB_VAI,RGB_MOD ,XXXXXXX,           S(KC_A),XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
+    _______,RGB_HUD,RGB_SAD,RGB_VAD,RGB_RMOD,XXXXXXX,           S(KC_A),XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
                     XXXXXXX,XXXXXXX,                                            XXXXXXX,XXXXXXX,                   \
                                     _______,_______,            _______,_______,                                   \
                                     _______,XXXXXXX,            XXXXXXX,_______,                                   \
@@ -157,19 +157,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Base (mouse)
  * +-----------------------------------------+                  +-----------------------------------------+
- * |QWERTY| RGB  |      |      |      |      |                  |      |      |      |      |      |      |
+ * |QWERTY|      |      |      |      |      |                  |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
- * |QWERTY| RGB  | RGB  | RGB  | RGB  |      |                  | LEFT | DOWN | UP   |RIGHT |      |      |
+ * |QWERTY|      |      |      |      |      |                  | LEFT | DOWN | UP   |RIGHT |      |      |
  * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
- * |QWERTY| RGB  | RGB  | RGB  | RGB  |      |                  |      |      |      | UP   |RIGHT |      |
+ * |QWERTY|      |      |      |      |      |                  |      |      |      | UP   |RIGHT |      |
  * +------+------+------+------+-------------+                  +-------------+------+------+------+------+
  *               |      |      |                                              | LEFT | DOWN |
  *               +-------------+                                              +-------------+
  */
 [LAYER_MOUSE] = LAYOUT(
-    QWERTY ,RGB_TOG,XXXXXXX,XXXXXXX,XXXXXXX ,XXXXXXX,           XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
-    QWERTY ,RGB_HUI,RGB_SAI,RGB_VAI,RGB_MOD ,XXXXXXX,           KC_MS_L,KC_MS_D,KC_MS_U,KC_MS_R,XXXXXXX,XXXXXXX,   \
-    QWERTY ,RGB_HUD,RGB_SAD,RGB_VAD,RGB_RMOD,XXXXXXX,           XXXXXXX,XXXXXXX,XXXXXXX,KC_MS_U,KC_MS_R,XXXXXXX,   \
+    QWERTY ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,           XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
+    QWERTY ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,           KC_MS_L,KC_MS_D,KC_MS_U,KC_MS_R,XXXXXXX,XXXXXXX,   \
+    QWERTY ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,           XXXXXXX,XXXXXXX,XXXXXXX,KC_MS_U,KC_MS_R,XXXXXXX,   \
                     XXXXXXX,XXXXXXX,                                            KC_MS_L,KC_MS_D,                   \
                                     _______,_______,            KC_BTN1,KC_BTN2,                                   \
                                     _______,_______,            KC_WH_D,KC_WH_U,                                   \
