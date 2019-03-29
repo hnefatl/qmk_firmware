@@ -8,6 +8,7 @@ enum {
     LAYER_ADJUST,
     LAYER_LOWER,
     LAYER_RAISE,
+    LAYER_RAISE_LOWER,
     LAYER_FN,
     LAYER_MOUSE,
     LAYER_TEST,
@@ -21,6 +22,9 @@ enum {
 #define KC_CRST KC_CUSTOM_RESET
 #define KC_RP KC_ROUND_POINTY
 
+#define C_LEFT C(KC_LEFT)
+#define C_RIGHT C(KC_RIGHT)
+
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
 
@@ -30,6 +34,7 @@ enum {
 #define QWERTY DF(LAYER_QWERTY)
 #define LOWER MO(LAYER_LOWER)
 #define RAISE MO(LAYER_RAISE)
+#define RA_LO MO(LAYER_RAISE_LOWER)
 #define FN MO(LAYER_FN)
 #define MOUSE DF(LAYER_MOUSE)
 
@@ -77,60 +82,81 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
  * |      |   1  |   2  |   3  |   4  |   5  |                  | left | down | up   | right|      |      |
  * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
- * |      |      |      |      |      |      |                  |      |  [{  | }]   |  up  | right|      |
+ * |      |   6  |   7  |   8  |   9  |   0  |                  |      |  [{  | }]   |  up  | right|      |
  * +------+------+------+------+-------------+                  +-------------+------+------+------+------+
  *               |      |      |                                              | left | down |
  *               +-------------+                                              +-------------+
  */
 [LAYER_LOWER] = LAYOUT(
-    _______,   KC_1,   KC_2,   KC_3,   KC_4,   KC_5,               KC_6,   KC_7,   KC_8,   KC_9,    KC_0,XXXXXXX,  \
+    _______,   KC_1,   KC_2,   KC_3,   KC_4,   KC_5,               KC_6,   KC_7,   KC_8,   KC_9,   KC_0 ,XXXXXXX,  \
     _______,   KC_1,   KC_2,   KC_3,   KC_4,   KC_5,            KC_LEFT,KC_DOWN, KC_UP ,KC_RIGHT,XXXXXXX,XXXXXXX,  \
-    _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,            XXXXXXX,KC_LBRC,KC_RBRC, KC_UP ,KC_RIGHT,_______,  \
+    _______,   KC_6,   KC_7,   KC_8,   KC_9,   KC_0,            XXXXXXX,KC_LBRC,KC_RBRC, KC_UP ,KC_RIGHT,_______,  \
                     XXXXXXX,XXXXXXX,                                            KC_LEFT,KC_DOWN,                   \
                                     _______,_______,            _______,_______,                                   \
-                                    _______,XXXXXXX,            XXXXXXX,_______,                                   \
-                                    _______,_______,            XXXXXXX,_______                                    \
+                                    _______,XXXXXXX,             RA_LO ,_______,                                   \
+                                    _______,_______,            _______,_______                                    \
 ),
 
 /* Base (raise)
- * +-----------------------------------------+                  +-----------------------------------------+
- * |      |   1  |   2  |   3  |   4  |   5  |                  |   6  |   7  |   8  |   9  |   0  |      |
  * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
- * |      |      |      |      |      |      |                  |      |      |      |      |      |      |
+ * |      |      |      |  !   |  ^   |      |                  |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
- * |      |      |      |      |      |      |                  |      |  (<  | >)   |  up  | right|      |
+ * |      |  @   |  *   |  $   |  %   |  &   |                  |      |  (<  | >)   |      |      |      |
+ * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
+ * |      |      |      |  &   |  #   |      |                  |      |  [{  | }]   |  up  | right|      |
  * +------+------+------+------+-------------+                  +-------------+------+------+------+------+
  *               |      |      |                                              | left | down |
  *               +-------------+                                              +-------------+
  */
 [LAYER_RAISE] = LAYOUT(
-    _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,            XXXXXXX,XXXXXXX,KC_HOME,XXXXXXX,XXXXXXX,XXXXXXX,   \
-    _______,KC_END ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,            KC_LEFT,KC_DOWN, KC_UP ,KC_RIGHT,XXXXXXX,XXXXXXX,  \
-    _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,            XXXXXXX,KC_LBRC,KC_RBRC, KC_UP ,KC_RIGHT,_______,  \
+    _______,XXXXXXX,XXXXXXX,S(KC_1),S(KC_6),XXXXXXX,            XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
+    _______,S(KC_2),S(KC_8),S(KC_4),S(KC_5),S(KC_7),            XXXXXXX,S(KC_9),S(KC_0),XXXXXXX,XXXXXXX,XXXXXXX,  \
+    _______,XXXXXXX,XXXXXXX,S(KC_7),S(KC_3),XXXXXXX,            XXXXXXX,KC_LBRC,KC_RBRC,KC_UP ,KC_RIGHT,_______,  \
                     XXXXXXX,XXXXXXX,                                            KC_LEFT,KC_DOWN,                   \
                                     _______,_______,            _______,_______,                                   \
+                                    _______, RA_LO ,            XXXXXXX,_______,                                   \
+                                    _______,_______,            _______,_______                                    \
+),
+
+/* Base (raise_lower)
+ * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |                  |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |                  | HOME | C_L  | C_R  | END  |      |      |
+ * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |                  |      |      |      |      |      |      |
+ * +------+------+------+------+-------------+                  +-------------+------+------+------+------+
+ *               |      |      |                                              |      |      |
+ *               +-------------+                                              +-------------+
+ */
+[LAYER_RAISE_LOWER] = LAYOUT(
+    _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,            XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
+    _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,            KC_HOME, C_LEFT,C_RIGHT, KC_END,XXXXXXX,XXXXXXX,   \
+    _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,            XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
+                    XXXXXXX,XXXXXXX,                                            XXXXXXX,XXXXXXX,                   \
+                                    _______,_______,            _______,_______,                                   \
                                     _______,XXXXXXX,            XXXXXXX,_______,                                   \
-                                    _______,_______,            XXXXXXX,_______                                    \
+                                    _______,_______,            _______,_______                                    \
 ),
 
 /* Base (fn)
  * +-----------------------------------------+                  +-----------------------------------------+
  * |      |  f1  |  f2  |  f3  |  f4  |  f5  |                  |  f6  |  f7  |  f8  |  f9  | f10  | f11  |
  * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
- * |      |      |      |      |      |      |                  | MUTE | VOL- | VOL+ | MUTE |      | f12  |
+ * |      |  !   |  @   |  #   |  $   |  %   |                  | MUTE | VOL- | VOL+ | MUTE |      | f12  |
  * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
- * |      |      |      |      |      |      |                  |      | BRI- | BRI+ |      |      |      |
+ * |      |  ^   |  &   |  *   |  (   |  )   |                  |      | BRI- | BRI+ |      |      |      |
  * +------+------+------+------+-------------+                  +-------------+------+------+------+------+
  *               |      |      |                                              |      |      |
  *               +-------------+                                              +-------------+
  */
 [LAYER_FN] = LAYOUT(
     _______,  KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,              KC_F6,  KC_F7,  KC_F8,  KC_F9, KC_F10, KC_F11,   \
-    _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,            KC_MUTE,KC_VOLD,KC_VOLU,KC_MUTE,XXXXXXX, KC_F12,   \
-    _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,            XXXXXXX,KC_BRID,KC_BRIU,XXXXXXX,XXXXXXX,_______,   \
+    _______,S(KC_1),S(KC_2),S(KC_3),S(KC_4),S(KC_5),            KC_MUTE,KC_VOLD,KC_VOLU,KC_MUTE,XXXXXXX, KC_F12,   \
+    _______,S(KC_6),S(KC_7),S(KC_8),S(KC_9),S(KC_0),            XXXXXXX,KC_BRID,KC_BRIU,XXXXXXX,XXXXXXX,_______,   \
                     XXXXXXX,XXXXXXX,                                            XXXXXXX,XXXXXXX,                   \
                                     _______,_______,            _______,_______,                                   \
-                                    _______,XXXXXXX,            XXXXXXX,_______,                                   \
+                                    _______,_______,            _______,_______,                                   \
                                     _______,_______,            XXXXXXX,_______                                    \
 ),
 
@@ -151,15 +177,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,RGB_HUD,RGB_SAD,RGB_VAD,RGB_RMOD,XXXXXXX,           XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
                     XXXXXXX,XXXXXXX,                                            XXXXXXX,XXXXXXX,                   \
                                     _______,_______,            _______,_______,                                   \
-                                    _______,XXXXXXX,            XXXXXXX,_______,                                   \
-                                    _______,_______,            XXXXXXX,_______                                    \
+                                    _______,_______,            _______,_______,                                   \
+                                    _______,XXXXXXX,            _______,_______                                    \
 ),
 
 /* Base (mouse)
  * +-----------------------------------------+                  +-----------------------------------------+
- * |QWERTY|      |      |      |      |      |                  |      |      |      |      |      |      |
+ * |QWERTY|      |      |      |      |      |                  |      |      |      |      | WH U | WH U |
  * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
- * |QWERTY|      |      |      |      |      |                  | LEFT | DOWN | UP   |RIGHT |      |      |
+ * |QWERTY|      |      |      |      |      |                  | LEFT | DOWN | UP   |RIGHT | WH D | WH D |
  * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
  * |QWERTY|      |      |      |      |      |                  |      |      |      | UP   |RIGHT |      |
  * +------+------+------+------+-------------+                  +-------------+------+------+------+------+
