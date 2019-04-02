@@ -101,17 +101,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
  * |      |      |      |  !   |  ^   |      |                  |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
- * |      |  @   |  *   |  $   |  %   |  &   |                  |      |  (<  | >)   |      |      |      |
+ * |      |  @   |  *   |  $   |  %   |  &   |                  |  (   |  )   |      |      |      |      |
  * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
- * |      |      |      |  &   |  #   |      |                  |      |  [{  | }]   |  up  | right|      |
+ * |      |      |      |  &   |  #   |      |                  |  [{  |  }]  |      |  up  | right|      |
  * +------+------+------+------+-------------+                  +-------------+------+------+------+------+
  *               |      |      |                                              | left | down |
  *               +-------------+                                              +-------------+
  */
 [LAYER_RAISE] = LAYOUT(
     _______,XXXXXXX,XXXXXXX,S(KC_1),S(KC_6),XXXXXXX,            XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
-    _______,S(KC_2),S(KC_8),S(KC_4),S(KC_5),S(KC_7),            XXXXXXX,S(KC_9),S(KC_0),XXXXXXX,XXXXXXX,XXXXXXX,  \
-    _______,XXXXXXX,XXXXXXX,S(KC_7),S(KC_3),XXXXXXX,            XXXXXXX,KC_LBRC,KC_RBRC,KC_UP ,KC_RIGHT,_______,  \
+    _______,S(KC_2),S(KC_8),S(KC_4),S(KC_5),S(KC_7),            S(KC_9),S(KC_0),XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,  \
+    _______,XXXXXXX,XXXXXXX,S(KC_7),S(KC_3),XXXXXXX,            KC_LBRC,KC_RBRC,XXXXXXX,KC_UP ,KC_RIGHT,_______,  \
                     XXXXXXX,XXXXXXX,                                            KC_LEFT,KC_DOWN,                   \
                                     _______,_______,            _______,_______,                                   \
                                     _______, RA_LO ,            XXXXXXX,_______,                                   \
