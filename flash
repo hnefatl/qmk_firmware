@@ -8,7 +8,7 @@ fi
 OPTIND=1 # Reset getopts
 
 SERIAL_PORT=/dev/ttyACM0
-LAYOUT=default
+LAYOUT=andrius
 REFLASH_EEPROM=false
 hands=()
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LAYOUT=default
+LAYOUT=andrius
 
 # Parse arguments
 OPTIND=1
