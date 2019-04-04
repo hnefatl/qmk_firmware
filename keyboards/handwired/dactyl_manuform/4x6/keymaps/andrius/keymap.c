@@ -73,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                      KC_BSLS,KC_EQL,                                             MOUSE  ,KC_MINUS,                 \
                                     KC_ENT , KC_SPC ,            KC_BSPC,  KC_DEL ,                                \
                                     KC_LCTL,  LOWER ,             RAISE ,  KC_LALT,                                \
-                                    _______,  TEST  ,              FN   ,  KC_LGUI                                 \
+                                    KC_MENU,  TEST  ,              FN   ,  KC_LGUI                                 \
 ),
 
 /* Base (lower)
