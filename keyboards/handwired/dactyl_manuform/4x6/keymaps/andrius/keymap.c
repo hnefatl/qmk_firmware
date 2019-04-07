@@ -56,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
  * |SHIFT |   z  |   x  |   c  |   v  |   b  |                  |   n  |   m  |   ,  |   .  |   /  |SHIFT |
  * +------+------+------+------+-------------+                  +-------------+------+------+------+------+
- *               |   \  |   -  |                                              |LEADER|   =  |
+ *               |   \  |   -  |                                              | MOUSE|   =  |
  *               +-------------+-------------+                  +-------------+-------------+
  *                             |ETNER |SPACE |                  | BCSP | DEL  |
  *                             |------+------|                  |------+------|
@@ -172,9 +172,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *               +-------------+                                              +-------------+
  */
 [LAYER_TEST] = LAYOUT(
-    _______,RGB_TOG,XXXXXXX,XXXXXXX,XXXXXXX ,XXXXXXX,           XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
-    _______,RGB_HUI,RGB_SAI,RGB_VAI,RGB_MOD ,XXXXXXX,           XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
-    _______,RGB_HUD,RGB_SAD,RGB_VAD,RGB_RMOD,XXXXXXX,           XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
+    _______,RGB_TOG,XXXXXXX,XXXXXXX,XXXXXXX ,XXXXXXX,           XXXXXXX,KC_LCBR,KC_RCBR,XXXXXXX,XXXXXXX,XXXXXXX,   \
+    _______,RGB_HUI,RGB_SAI,RGB_VAI,RGB_MOD ,XXXXXXX,           KC_LABK,S(KC_9),S(KC_0),KC_RABK,XXXXXXX,XXXXXXX,   \
+    _______,RGB_HUD,RGB_SAD,RGB_VAD,RGB_RMOD,XXXXXXX,           XXXXXXX,KC_LBRC,KC_RBRC,XXXXXXX,XXXXXXX,XXXXXXX,   \
                     XXXXXXX,XXXXXXX,                                            XXXXXXX,XXXXXXX,                   \
                                     _______,_______,            _______,_______,                                   \
                                     _______,_______,            _______,_______,                                   \
