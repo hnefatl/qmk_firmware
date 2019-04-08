@@ -18,9 +18,20 @@ enum {
 enum {
     KC_CUSTOM_RESET = SAFE_RANGE,
     KC_ROUND_POINTY,
+    KC_CURLY_BRACKETS,
+    KC_BLOCK_BRACKETS,
+    KC_ROUND_BRACKETS,
+    KC_POINT_BRACKETS,
 };
 #define KC_CRST KC_CUSTOM_RESET
+
 #define KC_RP KC_ROUND_POINTY
+
+#define KC_CBR KC_CURLY_BRACKETS
+#define KC_BBR KC_BLOCK_BRACKETS
+#define KC_RBR KC_ROUND_BRACKETS
+#define KC_PBR KC_POINT_BRACKETS
+
 
 #define C_LEFT C(KC_LEFT)
 #define C_RIGHT C(KC_RIGHT)
@@ -62,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                             |------+------|                  |------+------|
  *                             | CTRL |LOWER |                  |RAISE | ALT  |
  *                             |------+------|                  |------+------|
- *                             | CMD  |SUPER |                  | FN   | META |
+ *                             | SHFT |SUPER |                  | FN   | META |
  *                             +-------------+                  +-------------+
  */
 
@@ -73,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                      KC_BSLS,KC_MINUS,                                             MOUSE  ,KC_EQL,                 \
                                     KC_ENT , KC_SPC ,            KC_BSPC,  KC_DEL ,                                \
                                     KC_LCTL,  LOWER ,             RAISE ,  KC_LALT,                                \
-                                    KC_PSCR,  TEST  ,              FN   ,  KC_LGUI                                 \
+                                    KC_LSFT,  TEST  ,              FN   ,  KC_LGUI                                 \
 ),
 
 /* Base (lower)
@@ -172,10 +183,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *               +-------------+                                              +-------------+
  */
 [LAYER_TEST] = LAYOUT(
-    _______,RGB_TOG,XXXXXXX,XXXXXXX,XXXXXXX ,XXXXXXX,           XXXXXXX,KC_LCBR,KC_RCBR,XXXXXXX,XXXXXXX,XXXXXXX,   \
-    _______,RGB_HUI,RGB_SAI,RGB_VAI,RGB_MOD ,XXXXXXX,           KC_LABK,S(KC_9),S(KC_0),KC_RABK,XXXXXXX,XXXXXXX,   \
-    _______,RGB_HUD,RGB_SAD,RGB_VAD,RGB_RMOD,XXXXXXX,           XXXXXXX,KC_LBRC,KC_RBRC,XXXXXXX,XXXXXXX,XXXXXXX,   \
-                    XXXXXXX,XXXXXXX,                                            XXXXXXX,XXXXXXX,                   \
+    _______,RGB_TOG,XXXXXXX,XXXXXXX,XXXXXXX ,XXXXXXX,           XXXXXXX,KC_CBR ,KC_CBR ,XXXXXXX,XXXXXXX,XXXXXXX,   \
+    _______,RGB_HUI,RGB_SAI,RGB_VAI,RGB_MOD ,XXXXXXX,           XXXXXXX,KC_RBR ,KC_RBR ,XXXXXXX,XXXXXXX,XXXXXXX,   \
+    _______,RGB_HUD,RGB_SAD,RGB_VAD,RGB_RMOD,XXXXXXX,           XXXXXXX,KC_BBR ,KC_BBR ,XXXXXXX,XXXXXXX,XXXXXXX,   \
+                    XXXXXXX,XXXXXXX,                                            KC_PBR ,KC_PBR ,                   \
                                     _______,_______,            _______,_______,                                   \
                                     _______,_______,            _______,_______,                                   \
                                     _______,XXXXXXX,            _______,_______                                    \
@@ -220,10 +231,52 @@ void persistent_default_layer_set(uint16_t default_layer) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (keycode == KC_CUSTOM_RESET && record->event.pressed) {
-        // Send enter then reset the keyboard, so the flash script can proceed
-        register_code(KC_ENTER);
-        reset_keyboard();
+    switch (keycode) {
+        case KC_CUSTOM_RESET:
+            if (record->event.pressed) {
+                // Send enter then reset the keyboard, so the flash script can proceed
+                register_code(KC_ENTER);
+                reset_keyboard();
+            }
+        // do not have return false here;
+        case KC_CURLY_BRACKETS:
+            if (record->event.pressed) {
+				register_code(KC_LSHIFT); // shift down
+                tap_code(KC_LBRACKET); // {
+                tap_code(KC_RBRACKET); // }
+				unregister_code(KC_LSHIFT); // shift up
+
+                tap_code(KC_LEFT); // <-
+            }
+            return false;
+        case KC_BLOCK_BRACKETS:
+            if (record->event.pressed) {
+                tap_code(KC_LBRACKET); // [
+                tap_code(KC_RBRACKET); // ]
+
+                tap_code(KC_LEFT); // <-
+            }
+            return false;
+        case KC_ROUND_BRACKETS:
+            if (record->event.pressed) {
+				register_code(KC_LSHIFT); // shift down
+                tap_code(KC_9); // (
+                tap_code(KC_0); // )
+				unregister_code(KC_LSHIFT); // shift up
+
+                tap_code(KC_LEFT); // <-
+            }
+            return false;
+        case KC_POINT_BRACKETS:
+            if (record->event.pressed) {
+				register_code(KC_LSHIFT); // shift down
+                tap_code(KC_COMMA); // <
+                tap_code(KC_DOT); // >
+				unregister_code(KC_LSHIFT); // shift up
+
+                tap_code(KC_LEFT); // <-
+            }
+            return false;
     }
     return true;
 }
