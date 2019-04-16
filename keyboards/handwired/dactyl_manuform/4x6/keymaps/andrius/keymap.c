@@ -11,6 +11,7 @@ enum {
     LAYER_RAISE_LOWER,
     LAYER_FN,
     LAYER_MOUSE,
+    LAYER_MOUSE_ASSIST,
     LAYER_TEST,
 };
 
@@ -43,6 +44,7 @@ enum {
 
 // Layer switches
 #define QWERTY DF(LAYER_QWERTY)
+#define MOUSE_A DF(LAYER_MOUSE_ASSIST)
 #define LOWER MO(LAYER_LOWER)
 #define RAISE MO(LAYER_RAISE)
 #define RA_LO MO(LAYER_RAISE_LOWER)
@@ -101,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,   KC_1,   KC_2,   KC_3,   KC_4,   KC_5,            KC_LEFT,KC_DOWN, KC_UP ,KC_RIGHT,_______,_______, \
     _______,   KC_6,   KC_7,   KC_8,   KC_9,   KC_0,            XXXXXXX,XXXXXXX,_______,_______,_______,_______,  \
                     XXXXXXX,XXXXXXX,                                            XXXXXXX,XXXXXXX,                   \
-                                    _______,_______,            _______,_______,                                   \
+                                    MOUSE_A,_______,            _______,_______,                                   \
                                     _______,XXXXXXX,             RA_LO ,_______,                                   \
                                     _______,_______,            _______,_______                                    \
 ),
@@ -124,6 +126,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                     XXXXXXX,XXXXXXX,                                            KC_LEFT,KC_DOWN,                   \
                                     _______,_______,            _______,_______,                                   \
                                     _______, RA_LO ,            XXXXXXX,_______,                                   \
+                                    _______,_______,            _______,_______                                    \
+),
+
+/* Base (mosue assist)
+ * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
+ * |      | del  | tabl | up   | tabr | pgup |                  |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
+ * |      | bspc | left | down | right| pgdw |                  |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|                  |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |                  |      |      |      |      |      |      |
+ * +------+------+------+------+-------------+                  +-------------+------+------+------+------+
+ *               |      |      |                                              |      |      |
+ *               +-------------+                                              +-------------+
+ */
+[LAYER_MOUSE_ASSIST] = LAYOUT(
+    _______,KC_DEL ,C(KC_J),KC_UP  ,C(KC_K) ,KC_PGUP,           XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
+    _______,KC_BSPC,KC_LEFT,KC_DOWN,KC_RIGHT,KC_PGDOWN,         XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
+    _______,C(KC_Z),C(KC_X),C(KC_C),C(KC_V) ,XXXXXXX,           XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   \
+                    XXXXXXX,XXXXXXX,                                            XXXXXXX,XXXXXXX,                   \
+                                    _______,_______,            _______,_______,                                   \
+                                    _______,QWERTY ,            _______,_______,                                   \
                                     _______,_______,            _______,_______                                    \
 ),
 
