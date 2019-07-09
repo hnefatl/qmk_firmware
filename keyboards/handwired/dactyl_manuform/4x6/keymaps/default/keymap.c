@@ -4,8 +4,8 @@ extern keymap_config_t keymap_config;
 
 // Layers
 enum {
-    LAYER_DVORAK = 0,
-    LAYER_QWERTY,
+    LAYER_QWERTY = 0,
+    LAYER_DVORAK,
     LAYER_SYMBOLS,
     LAYER_FUNCTION,
 };
