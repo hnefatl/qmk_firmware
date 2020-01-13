@@ -1,6 +1,5 @@
 #include QMK_KEYBOARD_H
 
-extern keymap_config_t keymap_config;
 
 // Layers
 enum {
@@ -94,7 +93,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 }
-
 void matrix_init_user(void) {
     set_unicode_input_mode(UC_LNX);
 }

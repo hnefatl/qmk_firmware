@@ -3,7 +3,6 @@
 
 #include QMK_KEYBOARD_H
 
-extern keymap_config_t keymap_config;
 
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
@@ -15,10 +14,6 @@ extern keymap_config_t keymap_config;
 #define _RAISE    2
 #define _ADJUST   3
 
-enum planck_keycodes {
-  BACKLIT = SAFE_RANGE
-};
-
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
 
@@ -26,9 +21,9 @@ enum planck_keycodes {
  * +--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+
  * |        |   F1   |   F2   |   F3   |   F4   |   F5   |   F6   |   F7   |   F8   |   F9   |  F10   |        |
  * +--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+
- * |  caps  |   F11  |   F12  |        |        |        |        |    -   |    =   |    [   |   ]    |        |
+ * |  caps  |   F11  |   F12  |        |        |        |        |    -   |    =   |    [   |   ]    |    \   |
  * +--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+
- * |        |  vol-  |  mute  |  vol+  |        |        |        |        |        |        |        |    \   |
+ * |        |  vol-  |  mute  |  vol+  |        |        |        |    _   |    +   |    {   |   }    |    |   |
  * +--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+
  * |        |  prev  |  play  |  next  |        |        |        |        |        |        |        |        |
  * +--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+
@@ -37,8 +32,8 @@ enum planck_keycodes {
  */
 #define _FUNCT LAYOUT_ortho_5x12 (\
     _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,\
-    KC_CAPS, KC_F11,  KC_F12,  _______, _______, _______, _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, _______,\
-    _______, KC_VOLD, KC_MUTE, KC_VOLU, _______, _______, _______, _______, _______, _______, _______, KC_BSLS,\
+    KC_CAPS, KC_F11,  KC_F12,  _______, _______, _______, _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS,\
+    _______, KC_VOLD, KC_MUTE, KC_VOLU, _______, _______, _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,\
     _______, KC_MPRV, KC_MPLY, KC_MNXT, _______, _______, _______, _______, _______, _______, _______, _______,\
     _______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END\
 )
@@ -79,10 +74,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 };
 
-uint32_t layer_state_set_user(uint32_t state) {
+layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
 void matrix_init_user(void) {
 }
-
