@@ -44,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB, KC_A,   KC_O,   KC_E,   KC_U,   KC_I,               KC_D,    KC_H,  KC_T,   KC_N,   KC_S,   KC_COLN,   \
     _______,KC_SCLN,KC_Q,   KC_J,   KC_K,   KC_X,               KC_B,    KC_M,  KC_W,   KC_V,   KC_Z,   KC_SLSH,   \
                     _______,_______,                                            _______,_______,                   \
-                                KC_SESC,KC_SPC,                     KC_ENT, KC_BSPC,                               \
+                                KC_SESC,KC_SPC,                     KC_BSPC,KC_ENT,                                \
                                     SYMBLS,KC_LALT,             KC_LCTL, SYMBLS,                                   \
                                     KC_LGUI,KC_RGUI,            KC_ESC, _______                                    \
 ),
@@ -54,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,  KC_A,  KC_S,   KC_D,   KC_F,   KC_G,               KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN,KC_COLN,   \
     _______, KC_Z,  KC_X,   KC_C,   KC_V,   KC_B,               KC_N,   KC_M,   KC_COMM,KC_DOT, KC_BSLS,KC_SLSH,   \
                     _______,_______,                                            _______,_______,                   \
-                                KC_SESC,KC_SPC,                     KC_ENT, KC_BSPC,                               \
+                                KC_SESC,KC_SPC,                     KC_BSPC,KC_ENT,                                \
                                     SYMBLS,KC_LALT,             KC_LCTL, SYMBLS,                                   \
                                     KC_LGUI,KC_RGUI,            KC_ESC, _______                                    \
 ),
